@@ -41,7 +41,11 @@ module.exports = function(context) {
         });
 
       if (platform == 'android') {
-        var pluginDir = path.join(platformPath, 'app/src/main/java');
+        if(wwwDir.includes("main")){
+                var pluginDir = path.join(platformPath, 'app/src/main/java');
+        }else{
+                var pluginDir = path.join(platformPath, 'src');
+        }
         replaceCryptKey_android(pluginDir, key, iv);
 
         var cfg = new ConfigParser(platformInfo.projectConfig.path);
